@@ -1,0 +1,518 @@
+body {
+  font-family: "Proxima Nova", Helvetica, sans-serif;
+  margin-top: 3em;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::-webkit-input-placeholder, .public-DraftEditorPlaceholder-root {
+  color: #888D93;
+}
+
+::placeholder {
+  color: #888D93;
+}
+
+#pageContainer {
+  max-width: 850px;
+  margin: 0px auto;
+}
+
+#siteHeader {
+  font-size: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-bottom: 1em;
+}
+
+#siteHeader h1 {
+  margin: 0;
+  font: inherit;
+  font-weight: 600;
+  flex: 0 0 auto;
+}
+
+#siteHeader .search {
+  border: none;
+  font-size: 27px;
+  font-family: inherit;
+  margin-left: 20px;
+  flex: 1 0 auto;
+  align-self: auto;
+}
+
+#siteHeader .search:hover {
+  border: 0.5px solid #ECEDEE;
+  border-radius: 4px;
+  margin-left: 19px;
+  margin-top: -1px;
+}
+
+#siteHeader a {
+  color: black;
+}
+
+#siteHeader .add {
+  font-weight: 600;
+  margin-left: 27px;
+  align-self: stretch;
+  font-size: 40px;
+  margin-top: -1px;
+}
+
+#siteHeader .add:hover {
+  text-decoration: none;
+}
+
+#siteHeader .allEntries {
+  color: #888D93;
+  margin-left: 30px;
+  font-size: 27px;
+  flex: 1 0 auto;
+}
+
+#siteHeader .userButton {
+  font-size: 27px;
+  color: #888D93;
+  align-self: auto;
+  margin-left: 20px;
+}
+
+.entryList {
+  width: 760px;
+  margin: 0 auto;
+}
+
+.entryCell {
+  margin: 2em 0em;
+  display: flex;
+  flex-direction: row;
+}
+
+.entryCell:hover {
+  text-decoration: none;
+  background-color: #F8F8F8;
+  cursor: pointer;
+  margin: -0.5em;
+  padding: 0.5em;
+}
+
+.entryCell .content {
+  flex-grow: 1;
+  margin-left: 1.5em;
+  min-width: 0; /* Allow truncation past intrinsic content width. */
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.entryCell .heading {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3px;
+}
+
+.entryCell .heading .title {
+  font-weight: 600;
+  color: #21242C;
+  display: block;
+  /*margin-bottom: 3px;*/ /* Not sure... */
+}
+
+.entryCell .heading .author {
+  display: block;
+}
+
+.entryCell .toggleLists {
+  flex-shrink: 0;
+}
+
+.entryCell .imageContainer {
+  flex-shrink: 0;
+  width: 100px;
+  text-align: right;
+  line-height: 0;
+}
+
+.entryCell .imageContainer img {
+  max-width: 100%;
+  max-height: 75px;
+}
+
+.entryCell .imageContainer .imagePlaceholder {
+  width: 100%;
+  height: 75px;
+  display: inline-block;
+}
+
+.entryCell .imageContainer img, .entryCell .imageContainer .imagePlaceholder {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.entryCell .titleAndAuthor {
+  flex-grow: 1;
+}
+
+.entryCell .titleAndAuthor.pending {
+  font-style: italic;
+  color: #757575
+}
+
+.entryCell .description {
+  font-size: 14px;
+  line-height: 18px;
+  color: #757575;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  width: 550px;
+}
+
+.entryCell .userToggleList {
+  height: 18px;
+  display: flex;
+  flex-shrink: 0;
+  margin-left: 0.5em;
+  margin-bottom: 2px;
+}
+
+.entryCell .userToggleList img {
+  height: 18px;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(79, 82, 85, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.lightbox .entry {
+  position: relative;
+  padding: 30px;
+  min-width: 700px;
+  max-width: 960px;
+  height: 80vh;
+  margin: 0 auto;
+  background-color: white;
+  overflow-y: scroll;
+  border-radius: 4px;
+}
+
+.entry {
+  margin: 2.5em 0;
+  padding-bottom: 2.5em;
+  border-bottom: 0.5px solid #ECEDEE;
+}
+
+.entry:last-child {
+  border-bottom: initial;
+}
+
+.entry header {
+  position: relative;
+  margin-bottom: 1.5em;
+}
+
+.entry .titleAndAuthor {
+  margin-right: 13em;
+}
+
+.entry header .title, .entry header .author {
+  display: inline-block;
+}
+
+.entry header .title {
+  font-size: 23px;
+  font-weight: 600;
+  max-width: 100%;
+}
+
+.entry header .author {
+  font-size: 20px;
+  color: #626469;
+}
+
+.entry header .author.hidden-until-hover {
+  opacity: 0;
+  position: absolute;
+}
+
+.entry.editable:hover header .author.hidden-until-hover {
+  opacity: inherit;
+  position: static;
+}
+
+.entry header .externalLink {
+  position: absolute;
+  right: 0px;
+  top: 5px;
+  text-align: right;
+  font-size: 17px;
+  width: 13em;
+}
+
+.entry header .externalLink a {
+  color: #888D93;
+}
+
+.entry header .externalLink .edit {
+  display: none;
+}
+
+.entry:hover header .externalLink .edit {
+  color: #D6D8DA;
+  bottom: 0;
+  display: inline-block;
+}
+
+.entry header input {
+  border: 0.5px solid rgba(0,0,0,0);
+  border-radius: 4px;
+  margin: -2.5px;
+  padding: 3px;
+  font: inherit;
+  color: inherit;
+  max-width: 100%;
+}
+
+.entry.editable header:hover input, .entry.editable header input:focus {
+  border-color: #ECEDEE;
+}
+
+.entry .contents {
+  display: flex;
+  flex-flow: row;
+}
+
+.entry .leftColumn {
+  flex: 0 0 240px;
+  display: flex;
+  flex-flow: column;
+}
+
+.entry .leftColumn .bottomControls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin-top: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.entry .leftColumn .bottomControls a {
+  flex: 0 0 auto;
+}
+
+.entry .bottomControls a {
+  margin-right: 1em;
+  opacity: 0;
+  color: #D6D8DA;
+}
+
+.entry:hover .bottomControls a {
+  opacity: 1
+}
+
+.entry .bottomControls a:last-child {
+  margin-right: 0;
+}
+
+.entry .leftColumn .entryImage img {
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+.entry .bottomControls {
+  font-size: 15px;
+  margin-top: 1em;
+}
+
+.entry .bottomControls .startDiscussionThread {
+  color: #199CC1;
+}
+
+.entry .dates {
+  margin-top: 1em;
+  align-self: flex-end;
+  margin-bottom: 0.5em;
+}
+
+.entry .dates span {
+  font-size: 15px;
+  color: #D6D8DA;
+  display: inline-block;
+}
+
+.entry .dates span:first-child {
+  margin-right: 0.5em;
+}
+
+.userToggleList {
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userToggleList img {
+  height: 24px;
+  margin-right: 7px;
+}
+
+.userToggleList a {
+  line-height: 0;
+}
+
+.userToggleList span {
+  display: inline-block;
+  margin-right: 7px;
+  white-space: nowrap;
+}
+
+.userToggleList .noActiveUsers {
+  color: #ECEDEE;
+}
+
+.entry .tagEditorAndDates {
+  display: flex;
+  flex-direction: row;
+}
+
+.entry .tagEditorAndDates .tagEditor {
+  flex: 1 1 auto;
+}
+
+.entry .tagEditorAndDates .dates {
+  margin-top: 0;
+  flex: 0 0 auto;
+}
+
+.entry .toggleListsAndControls {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5em;
+}
+
+.entry .toggleListsAndControls .userToggleList {
+  flex: 0 0 auto;
+  margin-right: 0.5em;
+}
+
+.entry .toggleListsAndControls .bottomControls {
+  margin-top: 0;
+  flex: 1 0 auto;
+  text-align: right;
+}
+
+.entry .notes {
+  margin-left: 1.5em;
+  flex: 1 1 auto;
+}
+
+.entry .descriptionEditor {
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+
+.entry .descriptionEditor a {
+  color: #199CC1;
+}
+
+.entry.editable .DraftEditor-root:hover {
+
+  border: 0.5px solid #ECEDEE;
+  border-radius: 4px;
+  padding: 4px;
+  margin: -4.5px;
+}
+
+.entry .oneColumn .descriptionEditor {
+  max-width: 700px;
+}
+
+.entry .tagEditor.react-selectize.default {
+  font-size: 17px;
+  margin-right: 1.5em;
+  font-family: inherit;
+  border-color: #ECEDEE;
+}
+
+.entry .tagEditor a {
+  color: #888D93;
+}
+
+.entry .react-selectize.default.tagEditor.root-node .react-selectize-control {
+  border: none;
+  cursor: text;
+  font-size: inherit;
+  border-bottom: 0.5px solid rgba(0,0,0,0);
+}
+
+.entry .react-selectize.default.tagEditor.root-node .react-selectize-control:hover {
+  border-color: #ECEDEE;
+}
+
+.entry .react-selectize.default.tagEditor.root-node .react-selectize-control .react-selectize-placeholder {
+  font-family: inherit;
+  font-size: inherit;
+  text-indent: 0px;
+}
+
+.entry .react-selectize.default.tagEditor.root-node .react-selectize-control .react-selectize-search-field-and-selected-values {
+  padding-left: 0px;
+}
+
+.entry .tagEditor .react-selectize.dropdown-menu.default {
+  border-radius: 4px;
+  max-height: 300px;
+}
+
+.entry .tagEditor .react-selectize.dropdown-menu.default .simple-option, .entry .tagEditor .react-selectize.dropdown-menu.default .no-results-found {
+  font-size: 15px;
+  padding: 4px 10px;
+}
+
+.tagBlock {
+  display: inline;
+  padding-right: 1.0em;
+}
+
+.unconfirmedTagBlock {
+  display: inline;
+}
+
+.unconfirmedTagBlock br {
+  display: none;
+}
+
+.unconfirmedTagBlock:only-child {
+  display: inherit;
+}
+
+.unconfirmedTagBlock:only-child br {
+  display: inherit;
+}
+
+.unconfirmedTagBlock .public-DraftStyleDefault-block {
+  display: inline;
+}
+
+.entry .activeImageDrop {
+  border: 3px black solid;
+}

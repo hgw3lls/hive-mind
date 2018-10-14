@@ -1,0 +1,19 @@
+{
+  "restrictAccountsToEmailDomain": "",
+  "google": {
+    "clientId": "464532871105-b0668h8002fap9mdaln2etbai42g154d.apps.googleusercontent.com",
+    "secret": "KPEeFOAbYG7apFqBzuuLzJVY"
+  },
+  "S3": {
+    "key": "AKIAJQJKQDCGKUICJ3GA",
+    "secret": "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",
+    "bucket": "hive-mind",
+    "region": "US East"
+  },
+  "notificationEmails": {
+    "mailURL": "smtp://username:password@host:port",
+    "from": "a-robot@yourdomain.org",
+    "to": "some-mailing-list@yourdomain.org",
+    "replyTo": "perhaps-some-other-mailing-list@yourdomain.org"
+  }
+}
